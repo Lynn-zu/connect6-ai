@@ -103,17 +103,14 @@ models/connect6.model.h5
 pytest
 ```
 
-## 上传 GitHub 前的建议
-
-本项目会生成训练数据、缓存、历史模型和软著材料包，这些文件不建议直接提交到 GitHub。当前 `.gitignore` 已默认排除：
+本项目会生成训练数据、缓存、历史模型和软著材料包，这些文件不建议提交到普通 Git 仓库。当前 `.gitignore` 已默认排除：
 
 - 虚拟环境和 Python 缓存
 - 测试缓存和本地日志
 - `data/*.npz`、`data/games/`
-- 软著生成材料和 zip 包
 - 历史模型、备份模型
 
-默认只允许提交：
+默认只保留：
 
 ```text
 models/connect6.model.h5
@@ -121,25 +118,3 @@ models/training_meta.json
 ```
 
 如果模型文件后续变得很大，建议使用 Git LFS 或 GitHub Release 管理模型文件。
-
-## 常用 GitHub 上传命令
-
-```powershell
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/你的用户名/你的仓库名.git
-git push -u origin main
-```
-
-如果需要使用 Git LFS 管理模型文件：
-
-```powershell
-git lfs install
-git lfs track "*.h5"
-git add .gitattributes
-git add models/connect6.model.h5
-git commit -m "Add trained model"
-git push
-```
