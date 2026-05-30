@@ -1,0 +1,47 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# 编辑器和 IDE 配置
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 测试和覆盖率输出
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Flask 和本地运行文件
+instance/
+.env
+.env.*
+*.log
+
+# 训练数据和生成的对局记录
+data/games/
+data/*.npz
+
+# 生成的软著材料和打包文件
+soft_copyright_materials/
+*.zip
+
+# 模型产物
+# 默认只保留当前运行模型；历史模型、备份模型建议放到 Git LFS 或 Release。
+models/*.h5
+models/*.bak
+!models/connect6.model.h5
+!models/training_meta.json

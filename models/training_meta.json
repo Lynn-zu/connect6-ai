@@ -1,0 +1,251 @@
+{
+  "base_games": 98,
+  "total_self_play_games": 130,
+  "successful_runs": 8,
+  "history": [
+    {
+      "num_games": 2,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 80,
+      "top_k": 24,
+      "learning_rate": 1e-07,
+      "tactical_samples": 512,
+      "tactical_epochs": 1,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 1,
+        "white": 1,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 3,
+        "top_col": 4,
+        "top_p": 0.01324672345072031,
+        "entropy": 5.280000686645508,
+        "value": 0.5913498997688293
+      },
+      "time": "2026-05-29 10:57:11"
+    },
+    {
+      "num_games": 4,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 100,
+      "top_k": 24,
+      "learning_rate": 5e-08,
+      "tactical_samples": 0,
+      "tactical_epochs": 0,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 2,
+        "white": 2,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 3,
+        "top_col": 4,
+        "top_p": 0.013365659862756729,
+        "entropy": 5.2746663093566895,
+        "value": 0.5869495868682861
+      },
+      "time": "2026-05-29 11:02:50"
+    },
+    {
+      "num_games": 6,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 100,
+      "top_k": 24,
+      "learning_rate": 5e-08,
+      "tactical_samples": 0,
+      "tactical_epochs": 0,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 2,
+        "white": 4,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 10,
+        "top_col": 5,
+        "top_p": 0.013862625695765018,
+        "entropy": 5.263916969299316,
+        "value": 0.5756140351295471
+      },
+      "time": "2026-05-29 11:14:30"
+    },
+    {
+      "num_games": 6,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 100,
+      "top_k": 24,
+      "learning_rate": 5e-08,
+      "tactical_samples": 0,
+      "tactical_epochs": 0,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 4,
+        "white": 2,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 10,
+        "top_col": 5,
+        "top_p": 0.014674503356218338,
+        "entropy": 5.248430252075195,
+        "value": 0.5406292676925659
+      },
+      "time": "2026-05-29 11:26:16"
+    },
+    {
+      "num_games": 4,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 100,
+      "top_k": 24,
+      "learning_rate": 3e-08,
+      "tactical_samples": 0,
+      "tactical_epochs": 0,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 2,
+        "white": 2,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 10,
+        "top_col": 5,
+        "top_p": 0.01544931996613741,
+        "entropy": 5.234905242919922,
+        "value": 0.47596585750579834
+      },
+      "time": "2026-05-29 11:41:25"
+    },
+    {
+      "num_games": 4,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 100,
+      "top_k": 24,
+      "learning_rate": 3e-08,
+      "tactical_samples": 0,
+      "tactical_epochs": 0,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 3,
+        "white": 1,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 3,
+        "top_col": 4,
+        "top_p": 0.026583658531308174,
+        "entropy": 5.176753044128418,
+        "value": 0.7269419431686401
+      },
+      "time": "2026-05-29 18:54:10"
+    },
+    {
+      "num_games": 4,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 100,
+      "top_k": 24,
+      "learning_rate": 3e-08,
+      "tactical_samples": 0,
+      "tactical_epochs": 0,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 4,
+        "white": 0,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 3,
+        "top_col": 4,
+        "top_p": 0.027543891221284866,
+        "entropy": 5.148495674133301,
+        "value": 0.6737743616104126
+      },
+      "time": "2026-05-29 19:03:48"
+    },
+    {
+      "num_games": 2,
+      "epochs": 1,
+      "iteration": 1,
+      "iterations_requested": 1,
+      "mcts_simulations": 10,
+      "max_moves": 80,
+      "top_k": 24,
+      "learning_rate": 3e-08,
+      "tactical_samples": 4096,
+      "tactical_epochs": 2,
+      "policy_loss_weight": 2.0,
+      "value_loss_weight": 0.25,
+      "winners": {
+        "black": 1,
+        "white": 1,
+        "draw": 0
+      },
+      "diagnostics": {
+        "top_row": 14,
+        "top_col": 14,
+        "top_p": 0.012757916003465652,
+        "entropy": 5.29844331741333,
+        "value": -0.8370002508163452
+      },
+      "time": "2026-05-29 19:37:55"
+    }
+  ],
+  "last_train_time": "2026-05-29 19:37:55",
+  "last_model_path": "models/connect6.model.h5",
+  "last_run": {
+    "num_games": 2,
+    "epochs": 1,
+    "iteration": 1,
+    "iterations_requested": 1,
+    "mcts_simulations": 10,
+    "max_moves": 80,
+    "top_k": 24,
+    "learning_rate": 3e-08,
+    "tactical_samples": 4096,
+    "tactical_epochs": 2,
+    "policy_loss_weight": 2.0,
+    "value_loss_weight": 0.25,
+    "winners": {
+      "black": 1,
+      "white": 1,
+      "draw": 0
+    },
+    "diagnostics": {
+      "top_row": 14,
+      "top_col": 14,
+      "top_p": 0.012757916003465652,
+      "entropy": 5.29844331741333,
+      "value": -0.8370002508163452
+    }
+  }
+}
