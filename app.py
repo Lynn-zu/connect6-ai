@@ -1,6 +1,7 @@
 # app.py - 修复版：对接训练生成的模型文件
-from flask import Flask, request, jsonify, render_template, send_file
+from flask import Flask, request, jsonify, render_template, send_file, session, g
 from flask_cors import CORS
+from werkzeug.local import LocalProxy
 import numpy as np
 import random
 from typing import Tuple, List, Dict, Optional
@@ -43,7 +44,36 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 os.makedirs('data/games', exist_ok=True)
 
 app = Flask(__name__, template_folder='templates')
+app.secret_key = os.environ.get('FLASK_SECRET_KEY') or os.urandom(32)
 CORS(app)
+
+GAME_STATES = {}
+
+
+def _new_game_state():
+    return {
+        'board': None,
+        'ai': None,
+        'human_color': 1,
+        'ai_color': 2,
+        'ai_type': 'deep_learning',
+        'ai_level': 'medium',
+        'review_mode': False,
+        'review_index': 0,
+        'redo_stack': []
+    }
+
+
+@app.before_request
+def load_player_game_state():
+    game_id = session.get('game_id')
+    if not game_id:
+        game_id = os.urandom(16).hex()
+        session['game_id'] = game_id
+    g.game_state = GAME_STATES.setdefault(game_id, _new_game_state())
+
+
+game_state = LocalProxy(lambda: g.game_state)
 
 model_cache_lock = threading.Lock()
 cached_model = None
@@ -1183,19 +1213,7 @@ class Connect6PureModelAI(Connect6DeepLearningAI):
 
 
 
-# ===================== 全局状态与API =====================
-# 全局游戏状态
-game_state = {
-    'board': None,
-    'ai': None,
-    'human_color': 1,
-    'ai_color': 2,
-    'ai_type': 'deep_learning',  # 默认使用强化学习AI（训练模型）
-    'ai_level': 'medium',
-    'review_mode': False,
-    'review_index': 0,
-    'redo_stack': []
-}
+# ===================== 游戏API =====================
 
 training_lock = threading.Lock()
 training_status = {
@@ -1377,7 +1395,12 @@ def get_status_message(board):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', demo_mode=os.environ.get('DEMO_MODE') == '1')
+
+
+@app.route('/healthz')
+def health_check():
+    return jsonify({'status': 'ok'})
 
 @app.route('/api/new_game', methods=['POST'])
 def new_game():
@@ -1616,6 +1639,8 @@ def next_move():
 def train_model():
     """启动后台训练任务（对接训练脚本）"""
     try:
+        if os.environ.get('DEMO_MODE') == '1':
+            return jsonify({'success': False, 'message': '公开试玩版不开放训练接口'}), 403
         if not TF_AVAILABLE:
             return jsonify({
                 'success': False,

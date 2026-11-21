@@ -62,6 +62,24 @@ python app.py
 http://localhost:5000
 ```
 
+## HR 在线试玩版
+
+仓库包含 Render 部署配置 `render.yaml`。将项目推送到 GitHub 后，在 Render 选择 **New + → Blueprint** 并连接仓库，Render 会按配置创建试玩网站。首次构建完成后，Render 会提供一个 `onrender.com` 链接，可直接发给 HR 在浏览器里试玩。
+
+在线试玩版使用 `requirements-demo.txt`，不安装 TensorFlow；机器人通过内置规则与局面评分应对。每位访客的棋局按浏览器会话隔离，后台训练接口关闭。免费实例在一段时间无人访问后可能休眠，首次打开需要等待服务启动。
+
+本地预览同一试玩版（Windows PowerShell）：
+
+```powershell
+py -3.11 -m venv .venv-demo
+.\.venv-demo\Scripts\activate
+python -m pip install -r requirements-demo.txt
+$env:DEMO_MODE = "1"
+python app.py
+```
+
+打开 `http://127.0.0.1:5000` 即可试玩。`requirements.txt` 和原有训练流程保持不变。
+
 ## 模型说明
 
 默认模型路径为：
@@ -103,6 +121,7 @@ models/connect6.model.h5
 pytest
 ```
 
+## 文件管理说明
 本项目会生成训练数据、缓存、历史模型和软著材料包，这些文件不建议提交到普通 Git 仓库。当前 `.gitignore` 已默认排除：
 
 - 虚拟环境和 Python 缓存

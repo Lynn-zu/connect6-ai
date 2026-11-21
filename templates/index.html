@@ -546,12 +546,22 @@
         <aside class="setup-panel">
             <div class="panel-head">
                 <h2>开始对弈</h2>
+                {% if demo_mode %}
+                <p>欢迎体验六子棋。演示机器人使用规则与局面评分实时应对。</p>
+                {% else %}
                 <p>选择棋盘、先手和机器人强度。训练机器人适合观察模型水平，增强机器人会加入局面判断。</p>
+                {% endif %}
             </div>
 
             <div class="field">
                 <label>机器人等级</label>
                 <div class="level-grid" id="aiLevels">
+                    {% if demo_mode %}
+                    <button class="level-card active" data-ai="deep_learning" type="button">
+                        <span class="level-name">演示机器人<span class="level-tag">可试玩</span></span>
+                        <span class="level-desc">结合规则判断与局面评分，即时响应你的落子。</span>
+                    </button>
+                    {% else %}
                     <button class="level-card active" data-ai="pure_model" type="button">
                         <span class="level-name">训练机器人<span class="level-tag">基础</span></span>
                         <span class="level-desc">只根据训练结果落子，适合查看模型本身的判断。</span>
@@ -564,6 +574,7 @@
                         <span class="level-name">搜索机器人<span class="level-tag">稳健</span></span>
                         <span class="level-desc">使用传统搜索和启发式规则，大棋盘时速度会更慢。</span>
                     </button>
+                    {% endif %}
                 </div>
             </div>
 
@@ -634,6 +645,7 @@
 </section>
 
 <script>
+const DEMO_MODE = {{ demo_mode|tojson }};
 class Connect6GameUI {
     constructor() {
         this.canvas = document.getElementById('gameBoard');
@@ -644,12 +656,12 @@ class Connect6GameUI {
         this.gameState = null;
         this.currentMoves = [];
         this.isThinking = false;
-        this.aiType = 'pure_model';
+        this.aiType = DEMO_MODE ? 'deep_learning' : 'pure_model';
         this.stoneCache = {};
         this.feedbackTimer = null;
         this.aiLabels = {
             pure_model: '训练机器人',
-            deep_learning: '增强机器人',
+            deep_learning: DEMO_MODE ? '演示机器人' : '增强机器人',
             minimax: '搜索机器人'
         };
         this.init();
@@ -724,6 +736,11 @@ class Connect6GameUI {
     }
 
     async refreshTrainStatus() {
+        if (DEMO_MODE) {
+            document.getElementById('modelMeta').textContent = '演示机器人已就绪';
+            document.getElementById('modelInfo').textContent = '规则与局面评分';
+            return;
+        }
         try {
             const res = await fetch('/api/train_status');
             const data = await res.json();
@@ -872,7 +889,7 @@ class Connect6GameUI {
         const labels = {
             pure_model: '训练机器人',
             enhanced_model: '增强机器人',
-            fallback_heuristic: '启发式回退',
+            fallback_heuristic: DEMO_MODE ? '演示机器人' : '启发式回退',
             model_unavailable: '训练模型不可用',
             minimax: '搜索机器人'
         };
